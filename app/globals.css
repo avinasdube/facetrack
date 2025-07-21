@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* styles for face tracking app */
+.video-container {
+  position: relative;
+  overflow: hidden;
+}
+
+/* for proper aspect ratio on mobile */
+@media (max-width: 768px) {
+  .video-container video,
+  .video-container canvas {
+    width: 100% !important;
+    height: auto !important;
+  }
+}
+
+/* smooth transitions for recording indicator */
+.recording-pulse {
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: .5;
+  }
+}
+
+/* custom scrollbar for video list */
+.video-scroll::-webkit-scrollbar {
+  width: 8px;
+}
+
+.video-scroll::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 4px;
+}
+
+.video-scroll::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+.video-scroll::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* face detection overlay styles */
+.face-overlay {
+  pointer-events: none;
+  mix-blend-mode: normal;
+}
+
+/* responsive video grid */
+@media (max-width: 640px) {
+  .video-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .video-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* loading animation improvements */
+.loading-spinner {
+  border-color: #3b82f6 transparent #3b82f6 transparent;
+}
+
+/* button hover effects */
+.btn-primary {
+  transition: all 0.3s ease;
+  transform: translateY(0);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4);
+}
+
+.btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+}
