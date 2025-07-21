@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Enable static file serving for model files
+  // Add response headers for face-api model files
   async headers() {
     return [
       {
@@ -8,15 +8,29 @@ const nextConfig = {
         headers: [
           {
             key: "Cache-Control",
-            value: "public, max-age=86400", // Cache models for 24 hours
+            value: "public, max-age=86400", // Cache models for 1 day
           },
         ],
       },
     ];
   },
-  // Optimize images and static assets
+
+  // Optional for flexibility — safe to keep
   images: {
-    unoptimized: true, // For static deployment compatibility
+    unoptimized: true,
+  },
+
+  // Fix Webpack warnings from node-only modules
+  webpack: (config, { isServer }) => {
+    if (!isServer) {
+      config.resolve.fallback = {
+        fs: false,
+        net: false,
+        tls: false,
+        encoding: false,
+      };
+    }
+    return config;
   },
 };
 
