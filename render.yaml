@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: facetrack
+    env: node
+    plan: free
+    buildCommand: npm install && npm run download-models && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
