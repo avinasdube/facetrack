@@ -59,7 +59,7 @@ const downloadFile = (url, filename) => {
         });
       })
       .on("error", (err) => {
-        fs.unlink(filePath, () => {}); // Delete the file on error
+        fs.unlink(filePath, () => {}); // deleting the file on error
         reject(err);
       });
   });
@@ -68,7 +68,7 @@ const downloadFile = (url, filename) => {
 const downloadAllModels = async () => {
   console.log("Downloading face-api.js models...");
 
-  // Ensure models directory exists
+  // checking if models directory exists
   const modelsDir = path.join(__dirname, "public", "models");
   if (!fs.existsSync(modelsDir)) {
     fs.mkdirSync(modelsDir, { recursive: true });
@@ -84,7 +84,7 @@ const downloadAllModels = async () => {
   }
 };
 
-// Run if this file is executed directly
+// run if this file is executed directly
 if (require.main === module) {
   downloadAllModels();
 }

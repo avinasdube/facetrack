@@ -2,6 +2,7 @@
 
 import { Component } from "react";
 
+// using react class component
 class ErrorBoundary extends Component {
   constructor(props) {
     super(props);
